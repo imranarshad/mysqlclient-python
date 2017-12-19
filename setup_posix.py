@@ -57,6 +57,8 @@ def get_config():
     removable_compile_args = ('-I', '-L', '-l')
     extra_compile_args = [i.replace("%", "%%") for i in mysql_config("cflags")
                           if i[:2] not in removable_compile_args]
+    
+    extra_compile_args.pop(extra_compile_args.index('-fabi-version=2'))
 
     # Copy the arch flags for linking as well
     for i in range(len(extra_compile_args)):
